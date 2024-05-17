@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" id="button1">ROCK</button>
+    <button type="button" id="button2">PAPER</button>
+    <button type="button" id="button3">SCISSORS</button>
+    <div id="computerChoice"></div>
+    <div id="score"></div>
+    <div id="result"></div>
+    <script>
+
+        const btn1 = document.querySelector("#button1");
+        const btn2 = document.querySelector("#button2");
+        const btn3 = document.querySelector("#button3");
+
+        const div = document.querySelector("#score");
+        const comp = document.querySelector("#computerChoice");
+        const resultDiv = document.createElement("div");
+        
+        
+        function checkScore(){
+            if(humanScore === 5)
+            resultDiv.textContent = " GAME OVER!!!  YOU WIN!!! "
+
+            else if (computerScore === 5)
+            resultDiv.textContent = " GAME OVER!!!  YOU LOSE :( "
+        }
+
+
+        function getComputerChoice(){
+        let number= Math.random();
+        if( number>=0 && number<0.40)
+            return "rock";
+        else if(number>=0.40 && number<0.70)
+            return "paper";
+        else    
+            return "scissors";
+        }
+
+        let humanScore=0;
+        let computerScore=0;
+        let humanChoice;
+
+        function playRound(humanChoice) {
+            
+             const selectCompChoice= getComputerChoice();
+             comp.textContent = selectCompChoice;
+
+            if(humanChoice==="rock" && selectCompChoice==="paper"){
+                computerScore++;
+                div.textContent = "You lose! Paper beats Rock";
+                checkScore();
+            }
+            else if(humanChoice==="rock" && selectCompChoice==="scissors"){
+                humanScore++;
+                div.textContent = "You win! Rock beats Scissors ";
+                checkScore();
+            }
+            else if(humanChoice==="rock" && selectCompChoice==="rock"){
+                div.textContent = "Draw!";
+                humanScore++;
+                computerScore++
+                checkScore();
+                
+            }
+
+            else if(humanChoice==="paper" && selectCompChoice==="scissors"){
+                computerScore++;
+                div.textContent = "You lose! Scissors beats Paper";
+                checkScore();
+            }
+            else if(humanChoice==="paper" && selectCompChoice==="rock"){
+                humanScore++;
+                div.textContent = "You win! Paper beats Rock ";
+                checkScore();
+            }
+            else if(humanChoice==="paper" && selectCompChoice==="paper"){
+                div.textContent = "Draw!";
+                humanScore++;
+                computerScore++;
+                checkScore();
+            }
+            
+            else if(humanChoice==="scissors" && selectCompChoice==="rock"){
+                computerScore++;
+                div.textContent = "You lose! Rock beats Scissors" ;
+                checkScore();
+            }
+            else if(humanChoice==="scissors" && selectCompChoice==="paper"){
+                humanScore++;
+                div.textContent= "You win! Scissors beats Paper ";
+                checkScore();
+            }
+            else if(humanChoice==="scissors" && selectCompChoice==="scissors"){
+                div.textContent = "Draw";
+                humanScore++;
+                computerScore++;
+                checkScore();
+        }
+         p.textContent = "You: " + humanScore + "  Computer: " +
+                computerScore;
+    }
+        
+        btn1.addEventListener("click",function(){
+            humanChoice = "rock";
+            playRound(humanChoice);
+            
+        });
+
+        btn2.addEventListener("click",function(){
+            humanChoice = "paper";
+            playRound(humanChoice);
+            p.textContent = "You: " + humanScore + "  Computer: " +
+             computerScore;
+        });
+
+        btn3.addEventListener("click",function(){
+            humanChoice = "scissors";
+            playRound(humanChoice);
+            p.textContent = "You: " + humanScore + "  Computer: " +
+             computerScore;
+        });         
+              
+    
+    </script>
+</body>
+</html>
