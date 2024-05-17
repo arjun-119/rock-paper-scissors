@@ -20,15 +20,20 @@
 
         const div = document.querySelector("#score");
         const comp = document.querySelector("#computerChoice");
-        const resultDiv = document.createElement("div");
-        
+        const resultDiv = document.querySelector("#result");
+
         
         function checkScore(){
-            if(humanScore === 5)
-            resultDiv.textContent = " GAME OVER!!!  YOU WIN!!! "
-
-            else if (computerScore === 5)
-            resultDiv.textContent = " GAME OVER!!!  YOU LOSE :( "
+            if(humanScore === 5){
+            alert(resultDiv.textContent = " GAME OVER!!!  YOU WIN!!! ") ;
+            location.reload();
+            }
+              
+            else if (computerScore === 5){
+            alert(resultDiv.textContent = " GAME OVER!!!  YOU LOSE :( ");
+            location.reload();
+            }
+            
         }
 
 
@@ -49,61 +54,67 @@
         function playRound(humanChoice) {
             
              const selectCompChoice= getComputerChoice();
-             comp.textContent = selectCompChoice;
+             comp.textContent = "Computer chose " + selectCompChoice;
 
             if(humanChoice==="rock" && selectCompChoice==="paper"){
                 computerScore++;
                 div.textContent = "You lose! Paper beats Rock";
-                checkScore();
+               
             }
             else if(humanChoice==="rock" && selectCompChoice==="scissors"){
                 humanScore++;
                 div.textContent = "You win! Rock beats Scissors ";
-                checkScore();
+                
             }
             else if(humanChoice==="rock" && selectCompChoice==="rock"){
                 div.textContent = "Draw!";
                 humanScore++;
-                computerScore++
-                checkScore();
+                computerScore++;
+                
                 
             }
 
             else if(humanChoice==="paper" && selectCompChoice==="scissors"){
                 computerScore++;
                 div.textContent = "You lose! Scissors beats Paper";
-                checkScore();
+                
             }
             else if(humanChoice==="paper" && selectCompChoice==="rock"){
                 humanScore++;
                 div.textContent = "You win! Paper beats Rock ";
-                checkScore();
+                
             }
+
             else if(humanChoice==="paper" && selectCompChoice==="paper"){
                 div.textContent = "Draw!";
                 humanScore++;
                 computerScore++;
-                checkScore();
+                
             }
             
             else if(humanChoice==="scissors" && selectCompChoice==="rock"){
                 computerScore++;
                 div.textContent = "You lose! Rock beats Scissors" ;
-                checkScore();
+
             }
             else if(humanChoice==="scissors" && selectCompChoice==="paper"){
                 humanScore++;
                 div.textContent= "You win! Scissors beats Paper ";
-                checkScore();
             }
+
             else if(humanChoice==="scissors" && selectCompChoice==="scissors"){
                 div.textContent = "Draw";
                 humanScore++;
                 computerScore++;
-                checkScore();
+                
         }
-         p.textContent = "You: " + humanScore + "  Computer: " +
+        
+        const para = document.createElement("p");
+        div.appendChild(para); 
+        para.textContent = "You: " + humanScore + "  Computer: " +
                 computerScore;
+                checkScore();
+
     }
         
         btn1.addEventListener("click",function(){
